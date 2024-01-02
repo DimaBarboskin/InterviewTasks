@@ -8,15 +8,17 @@ import kotlin.random.Random
 // ]
 
 fun main(args: Array<String>) {
-    createMatrix3x3(3, 20)
-
+    val arr = createMatrix(3, 20, 1)
+    for (i in arr.indices) {
+        println("[${arr[i].joinToString(",")}]")
+    }
 }
 
-fun createMatrix3x3(sizeOfMatrix: Int, amountOfNumbers: Int) {
+fun createMatrix(sizeOfMatrix: Int, maxNumber: Int, minNumber: Int): Array<Array<Int>> {
     val arr = Array(sizeOfMatrix) { Array(sizeOfMatrix) { 0 } }
     val listWithNumbers = mutableListOf<Int>()
 
-    for (i in 1..amountOfNumbers) {
+    for (i in minNumber..maxNumber) {
         listWithNumbers.add(i)
     }
 
@@ -24,6 +26,6 @@ fun createMatrix3x3(sizeOfMatrix: Int, amountOfNumbers: Int) {
         for (j in arr[i].indices) {
             arr[i][j] = listWithNumbers.removeAt(Random.nextInt(0, listWithNumbers.size))
         }
-        println("[${arr[i].joinToString(",")}]")
     }
+    return arr
 }
